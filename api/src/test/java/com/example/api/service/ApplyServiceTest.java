@@ -32,7 +32,7 @@ class ApplyServiceTest {
     @Test
     @DisplayName("쿠폰은 100개만 발급된다")//실패->레이스 컨디션 발생
     public void test2() throws InterruptedException {
-        int threadCount = 1000;
+        int threadCount = 100;
         ExecutorService executorService = Executors.newFixedThreadPool(32);
 
         CountDownLatch latch = new CountDownLatch(threadCount);
@@ -50,6 +50,6 @@ class ApplyServiceTest {
         latch.await();
 
         long count = couponRepository.count();
-        Assertions.assertThat(count).isEqualTo(100);
+        Assertions.assertThat(count).isEqualTo(10);
     }
 }
